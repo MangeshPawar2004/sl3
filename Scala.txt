@@ -1,0 +1,28 @@
+import org.apache.spark.sql.SparkSession
+
+object WordCount {
+  def main(args: Array[String]): Unit = {
+    // Step 1: Initialize Spark Session
+    val spark = SparkSession.builder
+      .appName("Simple Word Count")
+      .master("local[*]")  // run locally with all cores
+      .getOrCreate()
+
+    // Step 2: Read text file into RDD
+    val inputRDD = spark.sparkContext.textFile("sample.txt")
+
+    // Step 3: Split lines into words and count occurrences
+    val wordCounts = inputRDD
+      .flatMap(line => line.split(" "))
+      .map(word => (word, 1))
+      .reduceByKey(_ + _)
+
+    // Step 4: Collect and print results
+    wordCounts.collect().foreach { case (word, count) =>
+      println(s"$word: $count")
+    }
+
+    // Step 5: Stop Spark session
+    spark.stop()
+  }
+}

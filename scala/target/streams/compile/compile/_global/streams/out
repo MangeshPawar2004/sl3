@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\91705\Desktop\TE LABS\SL-3\scala-mysql-jdbc\src\main\scala\WordCount.scala:6:50: value mapValues is not a member of scala.collection.IterableView[(String, Array[String]),scala.collection.immutable.Map[String,Array[String]]][0m
+[0m[[0m[31merror[0m] [0m[0m    val wordCount = words.groupBy(identity).view.mapValues(_.length).toMap[0m
+[0m[[0m[31merror[0m] [0m[0m                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
